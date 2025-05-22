@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import random
 from const_heuristic import Fcvrp  # Βεβαιώσου ότι έχεις το Fcvrp class
+from tabus import tabu_search
 
 def calculate_total_cost(solution, costs):
     """
@@ -91,3 +92,10 @@ if __name__ == "__main__":
     print("\n--- Βελτιωμένη Λύση (Τοπική Αναζήτηση) ---")
     print("Βέλτιστη Λύση:", best_solution)
     print("Βέλτιστο Κόστος:", best_cost)
+
+    # Εκτέλεση Tabu Search
+    best_tabu_solution, best_tabu_cost = tabu_search(initial_solution, costs, tabu_size=10, max_iterations=200)
+    print("\n--- Βελτιωμένη Λύση (Tabu Search) ---")
+    print("Λύση:", best_tabu_solution)
+    print("Κόστος:", best_tabu_cost)
+    
