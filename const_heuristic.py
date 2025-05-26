@@ -96,9 +96,4 @@ class Fcvrp:
 if __name__ == "__main__":
     fcvrp_instance = Fcvrp("fcvrp_P-n101-k4_10_3_3.txt")
     fcvrp_instance.visit_nodes()
-
-    print("\n--- Final Solution ---")
-    print(f"solution = {fcvrp_instance.solution}")
-
-
     
