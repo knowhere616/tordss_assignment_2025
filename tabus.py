@@ -51,12 +51,12 @@ def get_neighbors(solution):
     return neighbors, moves
 
 
-def tabu_search(initial_solution, costs, tabu_size=10, max_iterations=200):
+def tabu_search(local_solution, costs, tabu_size, max_iterations):
     """
     Εκτελεί τον αλγόριθμο Tabu Search για να βρει βελτιωμένη λύση στο πρόβλημα.
 
     Args:
-        initial_solution: Η αρχική λύση (π.χ. από κάποιο heuristics).
+        local_solution: Η λύση από τον Local Search.
         costs: Ο πίνακας κόστους του προβλήματος.
         tabu_size: Το μέγεθος της λίστας tabu, δηλαδή πόσες κινήσεις θυμόμαστε ώστε να μην τις επαναλάβουμε.
         max_iterations: Ο μέγιστος αριθμός επαναλήψεων που θα εκτελέσει ο αλγόριθμος.
@@ -65,13 +65,13 @@ def tabu_search(initial_solution, costs, tabu_size=10, max_iterations=200):
         best_solution: Η καλύτερη λύση που βρέθηκε κατά την εκτέλεση του αλγορίθμου.
         best_cost: Το κόστος της καλύτερης λύσης.
     """
-    current_solution = initial_solution
+    current_solution = local_solution
     current_cost = calculate_total_cost(current_solution, costs)
 
     best_solution = current_solution
     best_cost = current_cost
 
-    tabu_list = deque(maxlen=tabu_size)  # Λίστα απαγορευμένων κινήσεων (τύπου FIFO)
+    tabu_list = deque(maxlen=tabu_size)  # Λίστα απαγορευμένων κινήσεων
 
     for iteration in range(max_iterations):
         neighbors, moves = get_neighbors(current_solution)
